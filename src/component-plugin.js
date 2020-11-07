@@ -8,6 +8,7 @@ export default
             id: "the-component",
             text: "This is a component.",
             class: "i-am-the-component which-is-good",
+            time: 5000
         })
         {
             const Profile = Vue.extend({
@@ -21,6 +22,7 @@ export default
                 },
                 mounted()
                 {
+                    this.way_to_destroy();
                 },
                 methods: {
                     once()
@@ -44,7 +46,14 @@ export default
                         this.$parent.$once("hook:destroyed", handleDestroy);
                         this.$once("hidden", handleDestroy);
                         this.show();
-                    }
+                    },
+                    way_to_destroy()
+                    {
+                        window.setTimeout(
+                            () => { this.$destroy(); },
+                            options.time || 3000
+                        );
+                    },
                 },
                 destroyed()
                 {
