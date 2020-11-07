@@ -2,23 +2,42 @@ import assert from "assert";
 import { createLocalVue,shallowMount } from "@vue/test-utils";
 import MyPlugin from "../../src/component-plugin.js"
 
-const local_vue = createLocalVue();
-local_vue.use(MyPlugin);
+const localVue = createLocalVue();
+localVue.use(MyPlugin);
+
 const local_component = {
     name: "Foo",
     data: () => ({
-        a: 123,
+        value: 123,
     }),
     render(h) {
         return h( "span", "Hello World!" );
+    },
+    methods: {
+        set_plugin(input_value) {
+            this.value = this.$functionalComponent(input_value);
+        },
     },
 };
 
 describe("The plugin", () => {
     it("Mount a empty component", () => {
-        const div = document.createElement("div");
-        const wrapper = shallowMount(local_component, { attachTo: div, });
-        assert.strictEqual(wrapper.vm.a, 123);
+        const wrapper = shallowMount(local_component, {
+            localVue,
+            attachTo: document.createElement("div"),
+        });
+        const { vm } = wrapper;
+        assert.strictEqual(vm.value, 123);
+        wrapper.destroy();
+    });
+    it("Should work", () => {
+        const wrapper = shallowMount(local_component, {
+            localVue,
+            attachTo: document.createElement("div"),
+        });
+        const { vm } = wrapper;
+        vm.set_plugin(987);
+        assert.strictEqual(vm.value, 987);
         wrapper.destroy();
     })
 })
