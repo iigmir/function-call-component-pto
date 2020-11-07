@@ -19,22 +19,20 @@ const local_component = {
         },
     },
 };
+const component_options = {
+    localVue,
+    attachTo: document.createElement("div"),
+};
 
 describe("The plugin", () => {
     it("Mount a empty component", () => {
-        const wrapper = shallowMount(local_component, {
-            localVue,
-            attachTo: document.createElement("div"),
-        });
+        const wrapper = shallowMount(local_component, component_options);
         const { vm } = wrapper;
         assert.strictEqual(vm.value, 123);
         wrapper.destroy();
     });
     it("Should work", () => {
-        const wrapper = shallowMount(local_component, {
-            localVue,
-            attachTo: document.createElement("div"),
-        });
+        const wrapper = shallowMount(local_component, component_options);
         const { vm } = wrapper;
         vm.set_plugin(987);
         assert.strictEqual(vm.value, 987);
