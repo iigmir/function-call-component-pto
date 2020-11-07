@@ -46,7 +46,7 @@ describe("The plugin", () => {
             id: "the-component",
             text: "This is a component."
         });
-        assert.strictEqual(wrapper.find("div#the-component"));
+        assert.strictEqual(wrapper.find("div#the-component"), true);
         wrapper.destroy();
     })
 })
