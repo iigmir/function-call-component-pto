@@ -13,9 +13,12 @@ export default {
     },
     methods: {
         foo() {
-            const the_value = this.$myAddedMethod({ foo: "bar" });
-            console.log( the_value );
-            console.log( this.$myAddedOptions );
+            this.$addFuncComp({
+                dom: "div",
+                id: "the-component",
+                text: "This is a component.",
+                class: "i-am-the-component which-is-good",
+            });
         }
     },
 }

@@ -25,25 +25,25 @@ export default
                 methods: {
                     once()
                     {
-                                            // const handleDestroy = () =>
-                    // {
-                    //     this.$nextTick(() =>
-                    //     {
-                    //         const request_af =
-                    //             window.requestAnimationFrame ||
-                    //             window.webkitRequestAnimationFrame ||
-                    //             window.mozRequestAnimationFrame ||
-                    //             window.msRequestAnimationFrame ||
-                    //             window.oRequestAnimationFrame ||
-                    //             (cb => setTimeout(cb, 16));
-                    //         request_af(() => {
-                    //             this.$destroy()
-                    //         })
-                    //     })
-                    // };
-                    // this.$parent.$once("hook:destroyed", handleDestroy);
-                    // this.$once("hidden", handleDestroy);
-                    // this.show();
+                        const handleDestroy = () =>
+                        {
+                            this.$nextTick(() =>
+                            {
+                                const request_af =
+                                    window.requestAnimationFrame ||
+                                    window.webkitRequestAnimationFrame ||
+                                    window.mozRequestAnimationFrame ||
+                                    window.msRequestAnimationFrame ||
+                                    window.oRequestAnimationFrame ||
+                                    (cb => setTimeout(cb, 16));
+                                request_af(() => {
+                                    this.$destroy()
+                                })
+                            })
+                        };
+                        this.$parent.$once("hook:destroyed", handleDestroy);
+                        this.$once("hidden", handleDestroy);
+                        this.show();
                     }
                 },
                 destroyed()
