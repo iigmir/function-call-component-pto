@@ -20,6 +20,7 @@ export default
             const com = document.createElement(dom);
             com.id = id;
             com.classList = component_class.split(" ");
+            com.appendChild( document.createTextNode( options.text || "" ) );
         }
     }
 };
