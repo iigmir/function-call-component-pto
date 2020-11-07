@@ -1,4 +1,4 @@
-import the_plugin from "./the-plugin/index";
+import the_plugin from "./the-plugin/another";
 
 export default
 {
