@@ -37,5 +37,16 @@ describe("The plugin", () => {
         vm.set_plugin(987);
         assert.strictEqual(vm.value, 987);
         wrapper.destroy();
+    });
+    it("Should have a functional component", () => {
+        const wrapper = shallowMount(local_component, component_options);
+        const { vm } = wrapper;
+        vm.$createFuncComp({
+            dom: "div",
+            id: "the-component",
+            text: "This is a component."
+        });
+        assert.strictEqual(wrapper.find("div#the-component"));
+        wrapper.destroy();
     })
 })
