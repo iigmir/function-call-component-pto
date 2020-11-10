@@ -14,7 +14,7 @@ export default (options) => ({
     methods: {
         once()
         {
-            const handleDestroy = () =>
+            const destroy = () =>
             {
                 this.$nextTick(() =>
                 {
@@ -30,8 +30,8 @@ export default (options) => ({
                     })
                 })
             };
-            this.$parent.$once("hook:destroyed", handleDestroy);
-            this.$once("hidden", handleDestroy);
+            this.$parent.$once("hook:destroyed", destroy);
+            this.$once("hidden", destroy);
             this.show();
         },
         way_to_destroy()
