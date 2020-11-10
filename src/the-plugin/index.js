@@ -1,39 +1,16 @@
+import ThePlugin from "./the.vue";
+
 export default (options) => ({
     render(h)
     {
-        const dom = options.dom || "div";
-        return h( dom, {
-            id: options.id || "",
-            class: options.class ? options.class.split(" ") : "",
-        }, options.text || "" );
+        return h( ThePlugin, { props:{ options } });
     },
+    components: { ThePlugin },
     mounted()
     {
         this.way_to_destroy();
     },
     methods: {
-        once()
-        {
-            const destroy = () =>
-            {
-                this.$nextTick(() =>
-                {
-                    const request_af =
-                        window.requestAnimationFrame ||
-                        window.webkitRequestAnimationFrame ||
-                        window.mozRequestAnimationFrame ||
-                        window.msRequestAnimationFrame ||
-                        window.oRequestAnimationFrame ||
-                        (cb => setTimeout(cb, 16));
-                    request_af(() => {
-                        this.$destroy()
-                    })
-                })
-            };
-            this.$parent.$once("hook:destroyed", destroy);
-            this.$once("hidden", destroy);
-            this.show();
-        },
         way_to_destroy()
         {
             window.setTimeout(
