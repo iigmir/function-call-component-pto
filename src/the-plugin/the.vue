@@ -23,6 +23,10 @@ export default {
 <style scoped>
 #the-component
 {
-    color: red;
+    padding: 1rem;
+    margin: 0.5rem;
+    position: absolute;
+    top: 0;
+    background-color: rgba(255, 123, 0, 0.5);
 }
 </style>
